@@ -1,6 +1,7 @@
 import 'package:daftar_belanja/firebase_options.dart';
 import 'package:daftar_belanja/screens/shopping_list_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+// import 'firebase_option.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
