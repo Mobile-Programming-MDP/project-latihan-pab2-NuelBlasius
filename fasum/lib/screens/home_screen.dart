@@ -7,17 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   String formatTime(DateTime dateTime) {
     final now = DateTime.now();
     final diff = now.difference(dateTime);
     if (diff.inSeconds < 60) {
-      return '${diff.inSeconds} seconds ago';
+      return '${diff.inSeconds} secs ago';
     } else if (diff.inMinutes < 60) {
-      return '${diff.inMinutes} minutes ago';
+      return '${diff.inMinutes} mins ago';
     } else if (diff.inHours < 24) {
-      return '${diff.inHours} hours ago';
+      return '${diff.inHours} hrs ago';
     } else {
       return DateFormat('dd/MM/yyyy').format(dateTime);
     }
@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text("Home"),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
           IconButton(
@@ -52,23 +52,21 @@ class HomeScreen extends StatelessWidget {
                 .orderBy('createdAt', descending: true)
                 .snapshots(),
         builder: (context, snapshot) {
-          if (!snapshot.hasData) {
+          if (!snapshot.hasData)
             return const Center(child: CircularProgressIndicator());
-          }
 
           final posts = snapshot.data!.docs;
-
           return ListView.builder(
             itemCount: posts.length,
             itemBuilder: (context, index) {
-              final data = posts[index].data() as Map<String, dynamic>;
+              final data = posts[index].data();
               final imageBase64 = data['image'];
               final description = data['description'];
               final createdAtStr = data['createdAt'];
               final fullName = data['fullName'] ?? 'Anonim';
 
+              //parse ke DateTime
               final createdAt = DateTime.parse(createdAtStr);
-
               return Card(
                 margin: const EdgeInsets.all(10),
                 shape: RoundedRectangleBorder(
@@ -97,27 +95,31 @@ class HomeScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            fullName,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                formatTime(createdAt),
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              Text(
+                                fullName,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                            ],
                           ),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 6),
                           Text(
-                            formatTime(createdAt),
-                            style: const TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey,
-                            ),
+                            description ?? '',
+                            style: const TextStyle(fontSize: 16),
                           ),
-                          const SizedBox(height: 10),
-                          if (description != null)
-                            Text(
-                              description,
-                              style: const TextStyle(fontSize: 14),
-                            ),
                         ],
                       ),
                     ),
