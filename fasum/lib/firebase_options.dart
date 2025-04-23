@@ -41,54 +41,52 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDAvRzW5jLC1G4PQAYogOguZkXl_DGMnHc',
-    appId: '1:689610628171:web:a1c0217ed413b0687441ce',
-    messagingSenderId: '689610628171',
-    projectId: 'tugas1-5ff52',
-    authDomain: 'tugas1-5ff52.firebaseapp.com',
-    databaseURL: 'https://tugas1-5ff52-default-rtdb.firebaseio.com',
-    storageBucket: 'tugas1-5ff52.firebasestorage.app',
-    measurementId: 'G-9X0CR72YGW',
+    apiKey: 'AIzaSyCBb3WQwQ2Mer59Q-1YuRjpTc9o7VJ49FU',
+    appId: '1:60790859175:web:44f9c030548f1809bd8282',
+    messagingSenderId: '60790859175',
+    projectId: 'fanum-app',
+    authDomain: 'fanum-app.firebaseapp.com',
+    databaseURL: 'https://fanum-app-default-rtdb.firebaseio.com',
+    storageBucket: 'fanum-app.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCIfQ2n51-DhOfYftTPTgkHXAZjYNbIHmU',
-    appId: '1:689610628171:android:b10f81e61bd358097441ce',
-    messagingSenderId: '689610628171',
-    projectId: 'tugas1-5ff52',
-    databaseURL: 'https://tugas1-5ff52-default-rtdb.firebaseio.com',
-    storageBucket: 'tugas1-5ff52.firebasestorage.app',
+    apiKey: 'AIzaSyBx1KQnkUmIRc7YOYJiuqv6AO2UuqJAT6Q',
+    appId: '1:60790859175:android:e2a8a618b0958b7fbd8282',
+    messagingSenderId: '60790859175',
+    projectId: 'fanum-app',
+    databaseURL: 'https://fanum-app-default-rtdb.firebaseio.com',
+    storageBucket: 'fanum-app.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyC8axxAbp1HMvo_RiJ190vsgWGfnoATawE',
-    appId: '1:689610628171:ios:39e24fcceaf4a07c7441ce',
-    messagingSenderId: '689610628171',
-    projectId: 'tugas1-5ff52',
-    databaseURL: 'https://tugas1-5ff52-default-rtdb.firebaseio.com',
-    storageBucket: 'tugas1-5ff52.firebasestorage.app',
-    iosBundleId: 'com.example.fasumApp',
+    apiKey: 'AIzaSyCWLFhIu2nPKNbF_C5UUGkxDqczxukjC1o',
+    appId: '1:60790859175:ios:1a2026a1d44010f1bd8282',
+    messagingSenderId: '60790859175',
+    projectId: 'fanum-app',
+    databaseURL: 'https://fanum-app-default-rtdb.firebaseio.com',
+    storageBucket: 'fanum-app.firebasestorage.app',
+    iosBundleId: 'com.example.fasum',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyC8axxAbp1HMvo_RiJ190vsgWGfnoATawE',
-    appId: '1:689610628171:ios:39e24fcceaf4a07c7441ce',
-    messagingSenderId: '689610628171',
-    projectId: 'tugas1-5ff52',
-    databaseURL: 'https://tugas1-5ff52-default-rtdb.firebaseio.com',
-    storageBucket: 'tugas1-5ff52.firebasestorage.app',
-    iosBundleId: 'com.example.fasumApp',
+    apiKey: 'AIzaSyCWLFhIu2nPKNbF_C5UUGkxDqczxukjC1o',
+    appId: '1:60790859175:ios:1a2026a1d44010f1bd8282',
+    messagingSenderId: '60790859175',
+    projectId: 'fanum-app',
+    databaseURL: 'https://fanum-app-default-rtdb.firebaseio.com',
+    storageBucket: 'fanum-app.firebasestorage.app',
+    iosBundleId: 'com.example.fasum',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDAvRzW5jLC1G4PQAYogOguZkXl_DGMnHc',
-    appId: '1:689610628171:web:c5bcaa1b9321135e7441ce',
-    messagingSenderId: '689610628171',
-    projectId: 'tugas1-5ff52',
-    authDomain: 'tugas1-5ff52.firebaseapp.com',
-    databaseURL: 'https://tugas1-5ff52-default-rtdb.firebaseio.com',
-    storageBucket: 'tugas1-5ff52.firebasestorage.app',
-    measurementId: 'G-BVW9WV5SD3',
+    apiKey: 'AIzaSyCBb3WQwQ2Mer59Q-1YuRjpTc9o7VJ49FU',
+    appId: '1:60790859175:web:b275c9c53836f0ddbd8282',
+    messagingSenderId: '60790859175',
+    projectId: 'fanum-app',
+    authDomain: 'fanum-app.firebaseapp.com',
+    databaseURL: 'https://fanum-app-default-rtdb.firebaseio.com',
+    storageBucket: 'fanum-app.firebasestorage.app',
   );
 
 }

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "60790859175",
+    "firebase_url": "https://fanum-app-default-rtdb.firebaseio.com",
     "project_id": "fanum-app",
     "storage_bucket": "fanum-app.firebasestorage.app"
   },
