@@ -4,9 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fasum_app/screens/add_post_screen.dart';
 import 'package:fasum_app/screens/detail_screen.dart';
 import 'package:fasum_app/screens/sign_in_screen.dart';
-import 'package:fasum_app/screens/add_post_screen.dart';
-import 'package:fasum_app/screens/detail_screen.dart';
-import 'package:fasum_app/screens/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -183,6 +180,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 final latitude = data['latitude'];
                 final longitude = data['longitude'];
                 final category = data['category'] ?? 'Lainnya';
+                final currentUser = FirebaseAuth.instance.currentUser;
+                final userId = data['userId'] ?? "";
                 //parse ke DateTime
                 final createdAt = DateTime.parse(createdAtStr);
                 String heroTag =
@@ -234,24 +233,156 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
+                              Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    formatTime(createdAt),
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.grey,
-                                    ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        formatTime(createdAt),
+                                        style: const TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                      Text(
+                                        fullName,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 6),
+                                    ],
                                   ),
-                                  Text(
-                                    fullName,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(Icons.thumb_up),
+                                      ),
+                                      IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(Icons.comment),
+                                      ),
+                                      if (currentUser != null &&
+                                          currentUser.uid == userId)
+                                        IconButton(
+                                          onPressed: () {
+                                            showModalBottomSheet(
+                                              context: context,
+                                              shape:
+                                                  const RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.vertical(
+                                                          top: Radius.circular(
+                                                            24,
+                                                          ),
+                                                        ),
+                                                  ),
+                                              builder: (context) {
+                                                return SafeArea(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      ListTile(
+                                                        leading: const Icon(
+                                                          Icons.edit,
+                                                        ),
+                                                        title: const Text(
+                                                          'Edit',
+                                                        ),
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                            context,
+                                                          ); //close the modal
+                                                          // Navigate to edit screen or implement edit functionality
+                                                        },
+                                                      ),
+                                                      ListTile(
+                                                        leading: const Icon(
+                                                          Icons.delete,
+                                                        ),
+                                                        title: const Text(
+                                                          'Delete',
+                                                        ),
+                                                        onTap: () async {
+                                                          Navigator.pop(
+                                                            context,
+                                                          );
+                                                          final confirmDelete = await showDialog<
+                                                            bool
+                                                          >(
+                                                            context: context,
+                                                            builder: (context) {
+                                                              return AlertDialog(
+                                                                title: const Text(
+                                                                  'Konfirmasi',
+                                                                ),
+                                                                content: const Text(
+                                                                  'Apakah Anda yakin ingin menghapus laporan ini?',
+                                                                ),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed:
+                                                                        () => Navigator.pop(
+                                                                          context,
+                                                                          false,
+                                                                        ),
+                                                                    child:
+                                                                        const Text(
+                                                                          'Tidak',
+                                                                        ),
+                                                                  ),
+                                                                  TextButton(
+                                                                    onPressed:
+                                                                        () => Navigator.pop(
+                                                                          context,
+                                                                          true,
+                                                                        ),
+                                                                    child:
+                                                                        const Text(
+                                                                          'Ya',
+                                                                        ),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          );
+
+                                                          if (confirmDelete ==
+                                                                  true &&
+                                                              mounted) {
+                                                            // Implement delete functionality
+                                                            FirebaseFirestore
+                                                                .instance
+                                                                .collection(
+                                                                  "posts",
+                                                                )
+                                                                .doc(
+                                                                  posts[index]
+                                                                      .id,
+                                                                )
+                                                                .delete();
+                                                          }
+                                                        },
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                          icon: const Icon(Icons.more_vert),
+                                        ),
+                                    ],
                                   ),
-                                  const SizedBox(height: 6),
                                 ],
                               ),
                               const SizedBox(height: 6),
